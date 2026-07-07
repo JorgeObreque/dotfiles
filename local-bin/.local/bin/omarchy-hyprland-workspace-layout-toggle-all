@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Override of omarchy-hyprland-workspace-layout-toggle
+# Applies layout to ALL workspaces of the current monitor so expanded/fullscreen
+# windows stay consistent across desktops.
+
+CURRENT_LAYOUT=$(hyprctl activeworkspace -j | jq -r '.tiledLayout')
+ACTIVE_MONITOR=$(hyprctl activeworkspace -j | jq -r '.monitorID')
+
+case "$CURRENT_LAYOUT" in
+  dwindle) NEW_LAYOUT=scrolling ;;
+  *) NEW_LAYOUT=dwindle ;;
+esac
+
+for ws_id in $(hyprctl workspaces -j | jq -r --argjson m "$ACTIVE_MONITOR" '.[] | select(.monitorID == $m) | .id'); do
+  hyprctl keyword workspace "$ws_id", "layout:$NEW_LAYOUT" >/dev/null
+done
+
+notify-send -u low "󱂬    Workspace layout set to $NEW_LAYOUT (all workspaces)"

@@ -1,0 +1,38 @@
+add_newline = true
+command_timeout = 200
+
+format = """
+[░▒▓](#0a0e1a)[$directory$git_branch$git_status](#c9d6e6)[▓▒░](#0a0e1a)\
+$python$nodejs$rust$java$golang$docker_context$terraform$aws$kubernetes$c$elixir$erlang$lua$nix_shell$perl$php$ruby$zig$buf$cmake$dart$deno$elixir$elm$erlang$gleam$gradle$helm$haskell$haxe$kotlin$lua$nim$ocaml$perl$php$purescript$racket$red$rlang$scala$swift$vagrant$vbnet$vlang$elm$julia$dart$opam$guix$script$env_var$crystal$nim$ats$clojure$babashka$odin$gleam$typst$hy$cmake$bob$gleam$fvm$mojo$gleam$haxe$gleam$gleam$gleam$gleam\
+$character"""
+
+[character]
+error_symbol = "[▸](#ff3a3a)"
+success_symbol = "[▸](#00d4ff)"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+repo_root_style = "bold #00d4ff"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_read_only_style) "
+style = "#c9d6e6"
+format = "[ $path ]($style)"
+
+[git_branch]
+format = "[ $branch ]($style) "
+style = "italic #33ddff"
+
+[git_status]
+format     = "[$all_status$ahead_behind ]($style)"
+style      = "#ff8c42"
+ahead      = "⇡${count} "
+diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
+behind     = "⇣${count} "
+conflicted = "⚠ "
+up_to_date = "● "
+untracked  = "? "
+modified   = "! "
+stashed    = "≡ "
+staged     = "+ "
+renamed    = "» "
+deleted    = "✗ "

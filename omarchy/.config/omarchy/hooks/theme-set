@@ -1,0 +1,10 @@
+#!/bin/bash
+# Hook: theme-set - Replace swaybg with mpvpaper animated wallpaper
+sleep 1
+pkill -x swaybg
+pkill -x mpvpaper
+sleep 1
+for output in $(hyprctl monitors -j | python3 -c "import sys,json; [print(m['name']) for m in json.load(sys.stdin)]"); do
+  uwsm-app -- mpvpaper -o "no-audio --loop=inf --hwdec=auto" "$output" /home/jorge/Videos/Wallpapers/gundam-white.mp4 &
+done
+disown -a

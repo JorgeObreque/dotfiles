@@ -1,0 +1,11 @@
+# Wallpaper video (download separately)
+Videos/Wallpapers/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+
+# Stow backup files
+*.bak
+backup/
